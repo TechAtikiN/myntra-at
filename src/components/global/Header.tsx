@@ -1,5 +1,5 @@
 const Header = () => {
-  const categories = ['Watches', 'Bath Essentials', 'Shoes', 'Dresses', 'Teens Wear', 'Search by Brand', 'Top Picks', 'Luxe', 'Gifts', 'Recent Collection']
+  const categories = ['Watches', 'Offers', 'Essentials', 'Shoes', 'Buy Again', 'Search by Brand', 'Top Picks', 'Pet Supplies', 'Gifts', 'Recent Collection']
   return (
     <div className='flex justify-center shadow-lg items-center space-x-10'>
       {categories.map(category => (

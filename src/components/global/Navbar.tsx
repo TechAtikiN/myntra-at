@@ -3,13 +3,13 @@ import { MagnifyingGlassIcon, ShoppingBagIcon, ShoppingCartIcon, UserIcon } from
 
 const navLinks = [
   {
-    text: 'MEN',
+    text: 'CLOTHING',
   },
   {
-    text: 'WOMEN',
+    text: 'ELECTRONIC',
   },
   {
-    text: 'KIDS',
+    text: 'DECOR',
   },
   {
     text: 'HOME & LIVING',
