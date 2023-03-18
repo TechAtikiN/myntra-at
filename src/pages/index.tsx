@@ -1,15 +1,13 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
 import { Banner, Header, Navbar, ProductFeed } from '../components'
 
-const inter = Inter({ subsets: ['latin'] })
+import Head from 'next/head'
+
 interface Props {
   products: Product[]
 }
-export default function Home({ products }: any) {
-  console.log(products)
+export default function Home({ products }: Props) {
+
   return (
     <>
       <Head>
@@ -23,7 +21,7 @@ export default function Home({ products }: any) {
 
         <Header />
 
-        <main className=' h-[20rem]'>
+        <main className='h-[20rem]'>
           <Banner />
 
           <ProductFeed products={products} />

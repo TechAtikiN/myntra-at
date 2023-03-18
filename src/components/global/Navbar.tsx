@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { MagnifyingGlassIcon, ShoppingBagIcon, ShoppingCartIcon, UserIcon } from '@heroicons/react/24/outline'
-
+import { signIn, signOut, useSession } from 'next-auth/react'
 const navLinks = [
   {
     text: 'CLOTHING',
@@ -22,8 +22,10 @@ const navLinks = [
   },
 ]
 const Navbar = () => {
+  const session = useSession()
+
   return (
-    <nav className='p-2 border-b shadow-lg  border-gray-300 sticky top-0 flex justify-between items-center z-50 bg-white'>
+    <nav className='p-2 border-b shadow-lg border-gray-300 sticky top-0 z-50 flex justify-between items-center bg-white'>
 
       {/* left section */}
       <div className='flex justify-start items-center ml-5'>
@@ -42,28 +44,26 @@ const Navbar = () => {
       </div>
 
       {/* right section */}
-      <div className='hidden md:flex space-x-10 mr-14'>
-        <div className='flex'>
-          <input className='w-96 px-4 py-2 focus:bg-white bg-gray-100 focus:outline-none focus:border border-gray-200' type='Search for products, brands, categories....' />
-          <MagnifyingGlassIcon className='h-7 w-7 text-gray-500 relative right-10 top-3' />
-
-        </div>
-        <div className='flex space-x-8'>
-          <div className='nav-link'>
-            <UserIcon className='h-6 w-6 text-black' />
-            <p className='text-red-600'>Profile</p>
-          </div>
-          <div className='nav-link'>
-            <ShoppingCartIcon className='h-6 w-6 text-black' />
-            <p className='text-red-600'>Basket</p>
-          </div>
-          <div className='nav-link'>
-            <ShoppingBagIcon className='h-6 w-6 text-black' />
-            <p className='text-red-600'>Orders</p>
-          </div>
-        </div>
-
+      <div className='hidden md:flex'>
+        <input className='w-96 px-4 py-2 focus:bg-white bg-gray-100 focus:outline-none focus:border border-gray-200' type='Search for products, brands, categories....' />
+        <MagnifyingGlassIcon className='h-7 w-7 text-gray-500 relative right-10 top-3' />
       </div>
+
+      <div className='hidden md:flex space-x-8'>
+        <div className='nav-link'>
+          <ShoppingCartIcon className='h-6 w-6 text-black' />
+          <p className='text-red-600'>Basket</p>
+        </div>
+        <div className='nav-link'>
+          <ShoppingBagIcon className='h-6 w-6 text-black' />
+          <p className='text-red-600'>Orders</p>
+        </div>
+        <div className='nav-link' onClick={signIn}>
+          <UserIcon className='h-6 w-6 text-black' />
+          <p className='text-red-600'>{session.data ? `Hello ${session.data.user?.name}` : 'Sign In'}</p>
+        </div>
+      </div>
+      {session.data !== null ? (<p onClick={signOut} className='cursor-pointer ml-2 px-3 py-2 bg-red-600 text-white'>Logout</p>) : null}
     </nav>
   )
 }
