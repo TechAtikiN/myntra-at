@@ -23,7 +23,7 @@ const navLinks = [
 ]
 const Navbar = () => {
   return (
-    <nav className='p-2 border-b border-gray-300 sticky top-0 flex justify-between items-center'>
+    <nav className='p-2 border-b border-gray-300 sticky top-0 flex justify-between items-center z-50 bg-white'>
 
       {/* left section */}
       <div className='flex justify-start items-center ml-5'>

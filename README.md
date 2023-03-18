@@ -10,3 +10,4 @@
 - Firebase
 - Stripe Checkouts
 - Pleasant UI/UX
+- Multi-lingual Support
