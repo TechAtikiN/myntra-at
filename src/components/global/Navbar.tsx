@@ -1,6 +1,12 @@
 import Image from 'next/image'
 import { MagnifyingGlassIcon, ShoppingBagIcon, ShoppingCartIcon, UserIcon } from '@heroicons/react/24/outline'
 import { signIn, signOut, useSession } from 'next-auth/react'
+import { useSelector } from 'react-redux'
+import { selectItems } from '@/src/slices/basketSlice'
+import { useRouter } from 'next/router'
+
+import Link from 'next/link'
+
 const navLinks = [
   {
     text: 'CLOTHING',
@@ -23,13 +29,17 @@ const navLinks = [
 ]
 const Navbar = () => {
   const session = useSession()
+  const items = useSelector(selectItems)
+  const router = useRouter()
 
+  console.log(items)
   return (
     <nav className='p-2 border-b shadow-lg border-gray-300 sticky top-0 z-50 flex justify-between items-center bg-white'>
 
       {/* left section */}
       <div className='flex justify-start items-center ml-5'>
         <Image
+          onClick={() => router.push('/')}
           className='hover:cursor-pointer'
           src='https://media.istockphoto.com/id/964266962/vector/vector-logo-letter-n.jpg?s=612x612&w=0&k=20&c=-yfh2ZxdpLPK2Irbf_0csBJqBYYxmXh2_nBZD24Y0EI='
           alt='logo-img'
@@ -50,20 +60,20 @@ const Navbar = () => {
       </div>
 
       <div className='hidden md:flex space-x-8'>
-        <div className='nav-link'>
+        <Link href='/checkout' className='nav-link'>
           <ShoppingCartIcon className='h-6 w-6 text-black' />
           <p className='text-red-600'>Basket</p>
-        </div>
+        </Link>
         <div className='nav-link'>
           <ShoppingBagIcon className='h-6 w-6 text-black' />
           <p className='text-red-600'>Orders</p>
         </div>
-        <div className='nav-link' onClick={signIn}>
+        <div className='nav-link' onClick={() => signIn()}>
           <UserIcon className='h-6 w-6 text-black' />
           <p className='text-red-600'>{session.data ? `Hello ${session.data.user?.name}` : 'Sign In'}</p>
         </div>
       </div>
-      {session.data !== null ? (<p onClick={signOut} className='cursor-pointer ml-2 px-3 py-2 bg-red-600 text-white'>Logout</p>) : null}
+      {session.data !== null ? (<p onClick={() => signOut()} className='cursor-pointer ml-2 px-3 py-2 bg-red-600 text-white'>Logout</p>) : null}
     </nav>
   )
 }

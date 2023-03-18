@@ -10,3 +10,7 @@ type Product = {
     image: string
   }
 }
+
+type Products = {
+  items: Product[]
+}

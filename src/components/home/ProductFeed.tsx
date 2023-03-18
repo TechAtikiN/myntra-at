@@ -11,8 +11,8 @@ const ProductFeed = ({ products }: Props) => {
       <div className='px-8 my-10'>
         <h2 className='text-2xl my-10 font-bold text-red-600'>TOP PICKS FOR YOU</h2>
         <div className='grid md:grid-cols-5 grid-flow-row-dense gap-x-10 gap-y-5'>
-          {products.slice(0, 5).map((product: Product) => (
-            <Product product={product} />
+          {products.slice(1, 6).map((product: Product) => (
+            <Product key={product.id} product={product} />
           ))}
         </div>
       </div>
@@ -28,8 +28,8 @@ const ProductFeed = ({ products }: Props) => {
       <div className='px-8'>
         <h2 className='text-2xl my-10 font-bold text-red-600'>Brands at slashed prices</h2>
         <div className='grid md:grid-cols-3 grid-flow-row-dense gap-x-10 gap-y-5'>
-          {products.slice(5, 11).map((product: Product) => (
-            <Product product={product} />
+          {products.slice(6, 11).map((product: Product) => (
+            <Product key={product.id} product={product} />
           ))}
         </div>
       </div>
@@ -37,8 +37,8 @@ const ProductFeed = ({ products }: Props) => {
       <div className='px-8'>
         <h2 className='text-2xl my-10 font-bold text-red-600'>Categories to bag</h2>
         <div className='grid md:grid-cols-6 grid-flow-row-dense gap-x-5 gap-y-5'>
-          {products.slice(11, 29).map((product: Product) => (
-            <div className='flex flex-col space-y-4 items-center hover:cursor-pointer'>
+          {products.slice(12, 29).map((product: Product) => (
+            <div key={product.id} className='flex flex-col space-y-4 items-center hover:cursor-pointer'>
               <Image alt='category-product' className='rounded-full h-[11rem] w-[11rem]' src={product.images[2]} height={270} width={250} />
               <p className='font-bold text-lg text-gray-700'>{product.category.name}</p>
             </div>
