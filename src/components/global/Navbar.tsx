@@ -23,7 +23,7 @@ const navLinks = [
 ]
 const Navbar = () => {
   return (
-    <nav className='p-2 border-b border-gray-300 sticky top-0 flex justify-between items-center z-50 bg-white'>
+    <nav className='p-2 border-b shadow-lg  border-gray-300 sticky top-0 flex justify-between items-center z-50 bg-white'>
 
       {/* left section */}
       <div className='flex justify-start items-center ml-5'>
@@ -34,7 +34,7 @@ const Navbar = () => {
           height={80}
           width={80}
         />
-        <div className='flex justify-evenly space-x-10'>
+        <div className='hidden md:flex justify-evenly space-x-10'>
           {navLinks.map(link => (
             <p className='font-bold hover:cursor-pointer hover:scale-110 hover:text-red-400 text-gray-600'>{link.text}</p>
           ))}
@@ -42,7 +42,7 @@ const Navbar = () => {
       </div>
 
       {/* right section */}
-      <div className='flex space-x-10 mr-14'>
+      <div className='hidden md:flex space-x-10 mr-14'>
         <div className='flex'>
           <input className='w-96 px-4 py-2 focus:bg-white bg-gray-100 focus:outline-none focus:border border-gray-200' type='Search for products, brands, categories....' />
           <MagnifyingGlassIcon className='h-7 w-7 text-gray-500 relative right-10 top-3' />
