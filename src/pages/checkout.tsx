@@ -1,12 +1,18 @@
-import { CheckBadgeIcon } from "@heroicons/react/24/outline"
-import Image from "next/image"
-import { useSelector } from "react-redux"
-import { CartProducts, Navbar } from "../components"
-import { selectItems } from "../slices/basketSlice"
+import { CheckBadgeIcon, CurrencyDollarIcon } from '@heroicons/react/24/outline'
+import { useSelector } from 'react-redux'
+import { CartProducts, Navbar } from '../components'
+import { selectItems, selectTotal } from '../slices/basketSlice'
+import { useSession } from 'next-auth/react'
+import Currency from 'react-currency-formatter'
+
+import Image from 'next/image'
+import Link from 'next/link'
 
 const Checkout = () => {
 
   const items: Product[] = useSelector(selectItems)
+  const total: number = useSelector(selectTotal)
+  const session = useSession()
 
   return (
     <div>
@@ -22,28 +28,42 @@ const Checkout = () => {
           />
           <p className='text-3xl font-bold text-gray-700 -mt-16'>Hey, it feels so light!</p>
           <p className='text-gray-400 text-xl font-light mt-2'>There's nothing in your bag, lets add some items</p>
-          <button className='checkout-btn'>Go to Home</button>
+          <Link href='/' className='checkout-btn text-center'>Go to Home</Link>
         </main>
       ) :
-        <main className='lg:flex max-w-screen-2xl mx-auto md:ml- mt-10'>
+        <main className='md:grid md:grid-cols-4 md:mx-10 mt-10'>
 
           {/* Left */}
-          <div className='border-r w-3/4 border-gray-200'>
+          <div className='col-span-3'>
+            <h1 className='text-4xl tetx-gray-700 font-bold m-5'>My Cart</h1>
 
-            <div className='flex text-lg justify-between space-x-10 items-center border border-gray-200 p-4'>
-              <p className='font-bold text-gray-700'>Check delivery times & services</p>
-              <button className='checkout-btn'>Enter Pin Code</button>
-            </div>
-            <div className='flex text-lg justify-start space-x-10 items-center border border-gray-200 p-4 mt-4'>
-              <CheckBadgeIcon className='h-7 w-7' />
-              <p className='font-bold text-gray-700'>Available Offers</p>
-            </div>
-            <div className="mt-4 p-6">
-              {items.map(item => (
-                <CartProducts item={item} />
+            <div className='mt-4 p-6'>
+              {items.map((item, i) => (
+                <CartProducts key={i} category={item.category} id={item.id} title={item.title} description={item.description} image={item.image} price={item.price} />
               ))}
             </div>
           </div>
+
+          {/* Right */}
+          <div className='col-span-1 h-96 flex flexcol bg-white p-10 shadow-md'>
+            {items.length > 0 && (
+              <div>
+                <h2 className='text-xl font-semibold my-3'>Subtotal ({items.length} <span className='text-base'>items</span>):
+                  <span className='mx-3 font-bold'>
+                    <Currency quantity={total} currency="USD" />
+                  </span>
+                </h2>
+
+                <button
+                  disabled={!session}
+                  className={`${!session ? 'bg-gray-300' : 'bg-red-500 text-white'} px-3 py-2 font-semibold`}
+                >
+                  {!session ? 'Sign in to Checkout' : 'Proceed to checkout'}
+                </button>
+              </div>
+            )}
+          </div>
+
           <div>
 
           </div>

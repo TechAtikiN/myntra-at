@@ -10,7 +10,7 @@ const ProductFeed = ({ products }: Props) => {
     <div className=''>
       <div className='px-8 my-10'>
         <h2 className='text-2xl my-10 font-bold text-red-600'>TOP PICKS FOR YOU</h2>
-        <div className='grid md:grid-cols-5 grid-flow-row-dense gap-x-10 gap-y-5'>
+        <div className='grid md:grid-cols-3 grid-flow-row-dense gap-x-10 gap-y-5'>
           {products.slice(1, 6).map((product: Product) => (
             <Product key={product.id} product={product} />
           ))}
@@ -39,8 +39,8 @@ const ProductFeed = ({ products }: Props) => {
         <div className='grid md:grid-cols-6 grid-flow-row-dense gap-x-5 gap-y-5'>
           {products.slice(12, 29).map((product: Product) => (
             <div key={product.id} className='flex flex-col space-y-4 items-center hover:cursor-pointer'>
-              <Image alt='category-product' className='rounded-full h-[11rem] w-[11rem]' src={product.images[2]} height={270} width={250} />
-              <p className='font-bold text-lg text-gray-700'>{product.category.name}</p>
+              <Image alt='category-product' className='rounded-full h-[11rem] w-[11rem]' src={product.image} height={270} width={250} />
+              <p className='font-bold text-lg text-gray-700'>{product.category}</p>
             </div>
           ))}
         </div>

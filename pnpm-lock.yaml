@@ -15,6 +15,7 @@ specifiers:
   next-router-mock: ^0.9.2
   postcss: ^8.4.21
   react: 18.2.0
+  react-currency-formatter: ^1.1.0
   react-dom: 18.2.0
   react-redux: ^8.0.5
   react-responsive-carousel: ^3.2.23
@@ -34,6 +35,7 @@ dependencies:
   next-auth: 4.20.1_ld2jel3hspngo3u5lti2kgl2sq
   next-router-mock: 0.9.2_next@13.2.4+react@18.2.0
   react: 18.2.0
+  react-currency-formatter: 1.1.0_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-redux: 8.0.5_3xleytyzprlgycb2ded54tx72i
   react-responsive-carousel: 3.2.23
@@ -2831,6 +2833,15 @@ packages:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
     dev: true
+
+  /react-currency-formatter/1.1.0_react@18.2.0:
+    resolution: {integrity: sha512-5AIHYk8WKKKfXfxQW7i7V3DTQkDNqRcqAWyTy3KTs89qooOTj1o5VWkPOLjIxKOSGir6nUt8Aw8WXxAGn5nY6w==}
+    peerDependencies:
+      react: 16.x
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
 
   /react-dom/18.2.0_react@18.2.0:
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}

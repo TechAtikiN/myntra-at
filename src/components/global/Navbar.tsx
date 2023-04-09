@@ -34,7 +34,7 @@ const Navbar = () => {
 
   console.log(items)
   return (
-    <nav className='p-2 border-b shadow-lg border-gray-300 sticky top-0 z-50 flex justify-between items-center bg-white'>
+    <nav className='p-2 border-b border-gray-300 sticky top-0 z-50 flex justify-between items-center bg-white'>
 
       {/* left section */}
       <div className='flex justify-start items-center ml-5'>
