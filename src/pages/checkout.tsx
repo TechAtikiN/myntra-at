@@ -1,9 +1,7 @@
-import { CheckBadgeIcon, CurrencyDollarIcon } from '@heroicons/react/24/outline'
 import { useSelector } from 'react-redux'
 import { CartProducts, Navbar } from '../components'
 import { selectItems, selectTotal } from '../slices/basketSlice'
 import { useSession } from 'next-auth/react'
-import Currency from 'react-currency-formatter'
 
 import Image from 'next/image'
 import Link from 'next/link'
@@ -50,7 +48,7 @@ const Checkout = () => {
               <div>
                 <h2 className='text-xl font-semibold my-3'>Subtotal ({items.length} <span className='text-base'>items</span>):
                   <span className='mx-3 font-bold'>
-                    <Currency quantity={total} currency="USD" />
+                    $ {total}
                   </span>
                 </h2>
 
