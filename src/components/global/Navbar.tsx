@@ -1,10 +1,10 @@
-import Image from 'next/image'
-import { MagnifyingGlassIcon, ShoppingBagIcon, ShoppingCartIcon, UserIcon } from '@heroicons/react/24/outline'
 import { signIn, signOut, useSession } from 'next-auth/react'
 import { useSelector } from 'react-redux'
 import { selectItems } from '@/src/slices/basketSlice'
 import { useRouter } from 'next/router'
+import { MagnifyingGlassIcon, ShoppingBagIcon, ShoppingCartIcon, UserIcon } from '@heroicons/react/24/outline'
 
+import Image from 'next/image'
 import Link from 'next/link'
 
 const navLinks = [
@@ -27,6 +27,7 @@ const navLinks = [
     text: 'STUDIO',
   },
 ]
+
 const Navbar = () => {
   const session = useSession()
   const items = useSelector(selectItems)
@@ -48,7 +49,7 @@ const Navbar = () => {
         />
         <div className='hidden md:flex justify-evenly space-x-10'>
           {navLinks.map(link => (
-            <p className='font-bold hover:cursor-pointer hover:scale-110 hover:text-red-400 text-gray-600'>{link.text}</p>
+            <p key={link.text} className='font-bold hover:cursor-pointer hover:scale-110 hover:text-red-400 text-gray-600'>{link.text}</p>
           ))}
         </div>
       </div>
@@ -73,7 +74,7 @@ const Navbar = () => {
           <p className='text-red-600'>{session.data ? `Hello ${session.data.user?.name}` : 'Sign In'}</p>
         </div>
       </div>
-      {session.data !== null ? (<p onClick={() => signOut()} className='cursor-pointer ml-2 px-3 py-2 bg-red-600 text-white'>Logout</p>) : null}
+      {session.status !== 'unauthenticated' ? (<p onClick={() => signOut()} className='cursor-pointer ml-2 px-3 py-2 bg-red-600 text-white'>Logout</p>) : null}
     </nav>
   )
 }

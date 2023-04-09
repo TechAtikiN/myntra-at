@@ -13,6 +13,7 @@ const Checkout = () => {
   const items: Product[] = useSelector(selectItems)
   const total: number = useSelector(selectTotal)
   const session = useSession()
+  console.log(session)
 
   return (
     <div>
@@ -27,7 +28,7 @@ const Checkout = () => {
             height={600}
           />
           <p className='text-3xl font-bold text-gray-700 -mt-16'>Hey, it feels so light!</p>
-          <p className='text-gray-400 text-xl font-light mt-2'>There's nothing in your bag, lets add some items</p>
+          <p className='text-gray-400 text-xl font-light mt-2'>There&apos;s nothing in your bag, lets add some items</p>
           <Link href='/' className='checkout-btn text-center'>Go to Home</Link>
         </main>
       ) :
@@ -56,7 +57,7 @@ const Checkout = () => {
 
                 <button
                   disabled={!session}
-                  className={`${!session ? 'bg-gray-300' : 'bg-red-500 text-white'} px-3 py-2 font-semibold`}
+                  className={`${session.status === 'unauthenticated' ? 'bg-gray-300' : 'bg-red-500 text-white'} px-3 py-2 font-semibold`}
                 >
                   {!session ? 'Sign in to Checkout' : 'Proceed to checkout'}
                 </button>
@@ -64,12 +65,8 @@ const Checkout = () => {
             )}
           </div>
 
-          <div>
-
-          </div>
         </main>
       }
-
     </div >
   )
 }
