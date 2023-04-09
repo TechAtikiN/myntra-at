@@ -13,7 +13,6 @@ const Checkout = () => {
   const items: Product[] = useSelector(selectItems)
   const total: number = useSelector(selectTotal)
   const session = useSession()
-  console.log(session)
 
   return (
     <div>
