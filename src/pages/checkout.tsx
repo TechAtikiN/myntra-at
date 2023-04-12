@@ -2,15 +2,39 @@ import { useSelector } from 'react-redux'
 import { CartProducts, Navbar } from '../components'
 import { selectItems, selectTotal } from '../slices/basketSlice'
 import { useSession } from 'next-auth/react'
+import { loadStripe } from '@stripe/stripe-js'
 
 import Image from 'next/image'
 import Link from 'next/link'
+import axios from 'axios'
+
+const stripePromise = loadStripe(process.env.stripe_public_key!)
 
 const Checkout = () => {
 
   const items: Product[] = useSelector(selectItems)
   const total: number = useSelector(selectTotal)
   const session = useSession()
+
+  const createCheckoutSession = async () => {
+    const stripe = await stripePromise
+
+    // Call the backend to create a checkout session
+    const checkoutSession = await axios.post('/api/create-checkout-session',
+      {
+        items: items,
+        email: session.data?.user?.email
+      })
+
+    // Redirect user to stripe checkout
+    const result = await stripe?.redirectToCheckout({
+      sessionId: checkoutSession.data.id
+    })
+
+    if (result?.error) {
+      alert(result?.error.message)
+    }
+  }
 
   return (
     <div>
@@ -53,6 +77,8 @@ const Checkout = () => {
                 </h2>
 
                 <button
+                  onClick={createCheckoutSession}
+                  role='link'
                   disabled={!session}
                   className={`${session.status === 'unauthenticated' ? 'bg-gray-300' : 'bg-red-500 text-white'} px-3 py-2 font-semibold`}
                 >
@@ -61,7 +87,6 @@ const Checkout = () => {
               </div>
             )}
           </div>
-
         </main>
       }
     </div >
