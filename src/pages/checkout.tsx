@@ -3,7 +3,6 @@ import { CartProducts, Navbar } from '../components'
 import { selectItems, selectTotal } from '../slices/basketSlice'
 import { useSession } from 'next-auth/react'
 import { loadStripe } from '@stripe/stripe-js'
-import { getSession } from 'next-auth/react'
 
 import Image from 'next/image'
 import Link from 'next/link'
