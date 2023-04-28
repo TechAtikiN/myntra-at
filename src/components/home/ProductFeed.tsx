@@ -1,5 +1,5 @@
-import Image from "next/image"
-import Product from "./Product"
+import Image from 'next/image'
+import Product from './Product'
 
 interface Props {
   products: Product[]

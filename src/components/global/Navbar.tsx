@@ -65,10 +65,10 @@ const Navbar = () => {
           <ShoppingCartIcon className='h-6 w-6 text-black' />
           <p className='text-red-600'>Basket</p>
         </Link>
-        <div className='nav-link'>
+        <Link href='/orders' className='nav-link'>
           <ShoppingBagIcon className='h-6 w-6 text-black' />
           <p className='text-red-600'>Orders</p>
-        </div>
+        </Link>
         <div className='nav-link' onClick={() => signIn()}>
           <UserIcon className='h-6 w-6 text-black' />
           <p className='text-red-600'>{session.data ? `Hello ${session.data.user?.name}` : 'Sign In'}</p>

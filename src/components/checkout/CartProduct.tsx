@@ -1,7 +1,8 @@
 import { addToBasket, removeFromBasket } from '@/src/slices/basketSlice'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import Image from 'next/image'
 import { useDispatch } from 'react-redux'
+
+import Image from 'next/image'
 
 interface Props {
   id: number,

@@ -1,4 +1,6 @@
+import { getSession } from 'next-auth/react'
 import { Banner, Header, Navbar, ProductFeed } from '../components'
+
 import Head from 'next/head'
 
 interface Props {
@@ -13,6 +15,7 @@ export default function Home({ products }: Props) {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
+
       <div className='bg-gray-100'>
         <Navbar />
 
@@ -31,10 +34,13 @@ export default function Home({ products }: Props) {
 
 export async function getServerSideProps(context: any) {
   const response = await fetch('https://fakestoreapi.com/products')
+  const session = await getSession()
+
   const products = await response.json()
   return {
     props: {
-      products
+      products,
+      session
     }
   }
 } 

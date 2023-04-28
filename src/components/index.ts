@@ -9,3 +9,6 @@ export { default as Product } from './home/Product'
 
 // cart
 export { default as CartProducts } from './checkout/CartProduct'
+
+// orders
+export { default as Order } from './orders/Order'
