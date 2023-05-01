@@ -25,7 +25,7 @@ const Orders = ({ orders }: any) => {
         <h1 className='text-3xl border-b-4 font-semibold border-red-600 rounded-lg w-52 pb-2'>Your Orders</h1>
 
         {session ? (
-          <h2 className='font-semibold text-xl py-5'>{orders.length} Orders</h2>
+          <h2 className='font-semibold text-xl py-5'>{orders?.length} Orders</h2>
         ) : (
           <h2>Please sign in to see your orders</h2>
         )}
